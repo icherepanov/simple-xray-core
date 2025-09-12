@@ -22,7 +22,7 @@ echo "uuid: $(xray uuid)" >> /usr/local/etc/xray/.keys
 xray x25519 >> /usr/local/etc/xray/.keys
 
 export uuid=$(cat /usr/local/etc/xray/.keys | awk -F': ' '/uuid/ {print $2}')
-export privatkey=$(cat /usr/local/etc/xray/.keys | awk -F': ' '/PrivateKey/ {print $2}')
+export privatkey=$(cat /usr/local/etc/xray/.keys | awk -F': *' '/PrivateKey/ {print $2}')
 export shortsid=$(cat /usr/local/etc/xray/.keys | awk -F': ' '/shortsid/ {print $2}')
 
 # Создаем файл конфигурации Xray
@@ -143,7 +143,7 @@ cat << 'EOF' > /usr/local/bin/mainuser
 protocol=$(jq -r '.inbounds[0].protocol' /usr/local/etc/xray/config.json)
 port=$(jq -r '.inbounds[0].port' /usr/local/etc/xray/config.json)
 uuid=$(cat /usr/local/etc/xray/.keys | awk -F': ' '/uuid/ {print $2}')
-pbk=$(cat /usr/local/etc/xray/.keys | awk -F': ' '/PublicKey/ {print $2}')
+pbk=$(cat /usr/local/etc/xray/.keys | awk -F': *' '/(PublicKey|Public key|Password)/ {print $2}')
 sid=$(cat /usr/local/etc/xray/.keys | awk -F': ' '/shortsid/ {print $2}')
 sni=$(jq -r '.inbounds[0].streamSettings.realitySettings.serverNames[0]' /usr/local/etc/xray/config.json)
 ip=$(timeout 3 curl -4 -s icanhazip.com)
@@ -177,7 +177,7 @@ index=$(jq --arg email "$email" '.inbounds[0].settings.clients | to_entries[] | 
 protocol=$(jq -r '.inbounds[0].protocol' /usr/local/etc/xray/config.json)
 port=$(jq -r '.inbounds[0].port' /usr/local/etc/xray/config.json)
 uuid=$(jq --argjson index "$index" -r '.inbounds[0].settings.clients[$index].id' /usr/local/etc/xray/config.json)
-pbk=$(cat /usr/local/etc/xray/.keys | awk -F': ' '/PublicKey/ {print $2}')
+pbk=$(cat /usr/local/etc/xray/.keys | awk -F': *' '/(PublicKey|Public key|Password)/ {print $2}')
 sid=$(cat /usr/local/etc/xray/.keys | awk -F': ' '/shortsid/ {print $2}')
 username=$(jq --argjson index "$index" -r '.inbounds[0].settings.clients[$index].email' /usr/local/etc/xray/config.json)
 sni=$(jq -r '.inbounds[0].streamSettings.realitySettings.serverNames[0]' /usr/local/etc/xray/config.json)
@@ -254,7 +254,7 @@ index=$(jq --arg email "$selected_email" '.inbounds[0].settings.clients | to_ent
 protocol=$(jq -r '.inbounds[0].protocol' /usr/local/etc/xray/config.json)
 port=$(jq -r '.inbounds[0].port' /usr/local/etc/xray/config.json) 
 uuid=$(jq --argjson index "$index" -r '.inbounds[0].settings.clients[$index].id' /usr/local/etc/xray/config.json)
-pbk=$(cat /usr/local/etc/xray/.keys | awk -F': ' '/PublicKey/ {print $2}')
+pbk=$(cat /usr/local/etc/xray/.keys | awk -F': *' '/(PublicKey|Public key|Password)/ {print $2}')
 sid=$(cat /usr/local/etc/xray/.keys | awk -F': ' '/shortsid/ {print $2}')
 username=$(jq --argjson index "$index" -r '.inbounds[0].settings.clients[$index].email' /usr/local/etc/xray/config.json)
 sni=$(jq -r '.inbounds[0].streamSettings.realitySettings.serverNames[0]' /usr/local/etc/xray/config.json)
