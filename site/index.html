@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Xray Core — Быстрый запуск Xray без панелей</title>
+    <meta
+      name="description"
+      content="Современный лендинг проекта Simple Xray Core: преимущества, шаги запуска, FAQ и форма заявки для получения помощи с настройкой."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="#home" class="brand" aria-label="Simple Xray Core">
+        <img src="./assets/logo.svg" alt="Simple Xray Core logo" />
+      </a>
+      <nav>
+        <a href="#features">Возможности</a>
+        <a href="#how">Как это работает</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <a class="btn btn-primary" href="#lead-form">Оставить заявку</a>
+    </header>
+
+    <main id="home">
+      <section class="hero section">
+        <div>
+          <p class="label">Production-ready installation</p>
+          <h1>Запускайте Xray-core за минуты, без лишней сложности</h1>
+          <p class="subtitle">
+            Simple Xray Core автоматизирует установку, создаёт конфиг и команды управления пользователями.
+            Подходит для быстрого, понятного и стабильного деплоя на Ubuntu 22/24.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#lead-form">Получить помощь с запуском</a>
+            <a class="btn btn-secondary" href="https://github.com/ServerTechnologies/simple-xray-core" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+          <div class="metrics">
+            <article><strong>1 команда</strong><span>для старта</span></article>
+            <article><strong>5 CLI утилит</strong><span>для управления</span></article>
+            <article><strong>Ubuntu 22/24</strong><span>официально проверено</span></article>
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <img src="./assets/hero-illustration.svg" alt="Иллюстрация автоматической установки" />
+        </div>
+      </section>
+
+      <section id="features" class="section">
+        <h2>Что получает пользователь</h2>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Быстрая установка</h3>
+            <p>Скрипт устанавливает Xray, включает BBR и готовит конфиг с реальностью и базовой блокировкой рекламы.</p>
+          </article>
+          <article class="card">
+            <h3>Управление клиентами</h3>
+            <p>Команды <code>newuser</code>, <code>rmuser</code>, <code>sharelink</code>, <code>mainuser</code> и <code>userlist</code> уже готовы.</p>
+          </article>
+          <article class="card">
+            <h3>Удобный онбординг</h3>
+            <p>Сразу выдаются ссылка подключения и QR-код. Даже новичок понимает, что делать дальше.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="how" class="section split">
+        <div>
+          <h2>Путь от VPS до рабочего сервиса</h2>
+          <ol>
+            <li>Подготовьте VPS с Ubuntu 22 x64 или Ubuntu 24 x64.</li>
+            <li>Запустите установочный скрипт одной командой.</li>
+            <li>Получите основную ссылку подключения и QR-код.</li>
+            <li>Создавайте и удаляйте пользователей через CLI-команды.</li>
+          </ol>
+        </div>
+        <aside class="panel">
+          <p class="panel-title">Команда запуска</p>
+          <pre><code>wget -qO- https://raw.githubusercontent.com/
+ServerTechnologies/simple-xray-core/
+refs/heads/main/xray-install | bash</code></pre>
+        </aside>
+      </section>
+
+      <section id="lead-form" class="section">
+        <div class="lead-box">
+          <div>
+            <h2>Оставьте заявку на помощь с внедрением</h2>
+            <p>Мы свяжемся с вами, уточним задачу и предложим оптимальный путь запуска под ваш сценарий.</p>
+          </div>
+          <form id="contactForm" novalidate>
+            <label>
+              Имя
+              <input type="text" name="name" required placeholder="Ваше имя" />
+            </label>
+            <label>
+              Контакт (email или Telegram)
+              <input type="text" name="contact" required placeholder="you@example.com / @username" />
+            </label>
+            <label>
+              Что нужно сделать
+              <textarea name="message" rows="4" required placeholder="Например: настроить 50 пользователей и выдать инструкции"></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit">Отправить заявку</button>
+            <p id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section id="faq" class="section">
+        <h2>FAQ</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Это безопасно для production?</summary>
+            <p>Скрипт упрощает базовый запуск. Перед production-релизом проверьте доступы, firewall, логи и резервные копии конфигурации.</p>
+          </details>
+          <details>
+            <summary>Нужен ли домен и TLS-сертификат?</summary>
+            <p>Для базового сценария, реализованного в этом проекте, домен и сертификат не являются обязательными.</p>
+          </details>
+          <details>
+            <summary>Можно ли масштабировать?</summary>
+            <p>Да. Для масштабирования обычно добавляют централизованные бэкапы, мониторинг и CI/CD-процессы обновления конфигов.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <p>© 2026 Simple Xray Core</p>
+      <div>
+        <a href="https://github.com/ServerTechnologies/simple-xray-core" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="mailto:hello@simplexraycore.dev">hello@simplexraycore.dev</a>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
